@@ -1,6 +1,13 @@
+import { Provider } from 'react-redux';
 import Router from './src/Router';
-export default function App() {
+import { store } from './src/RTK/store';
 
-  return <Router />;
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Router />
+    </Provider>
+
+  );
 
 }
