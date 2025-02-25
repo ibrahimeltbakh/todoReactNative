@@ -20,7 +20,7 @@ const TodosList = ({ todos }) => {
             renderItem={({ item }) => (
                 <Pressable style={(item.isDone) ? ({ ...styles.taskView, borderColor: "teal" }) : (styles.taskView)}
                     onPress={() => {
-                        navigation.navigate('Details', { taskId: item.id, taskTitle: item.title });
+                        navigation.navigate('Details', item);
                     }}>
                     {item.isDone ?
                         (<Text style={styles.taskDone}>{item.title}</Text>) :

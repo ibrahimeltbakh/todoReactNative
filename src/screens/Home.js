@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getStoredTodos } from '../RTK/Slices/todosSlice';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Toaster } from 'react-hot-toast';
 const Home = () => {
     const todos = useSelector((state) => state.todos);
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Home = () => {
                     <Actions />
                 )
             }
+            <Toaster />
         </View >
     )
 }

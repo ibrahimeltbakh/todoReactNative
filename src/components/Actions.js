@@ -19,11 +19,10 @@ const Actions = () => {
         }
     }
 
-
     const actions = [
-        { id: "1", name: "All", action: () => { setFilter("all") } },
-        { id: "2", name: "In Progress", action: () => { setFilter("inprogress") } },
-        { id: "3", name: "Done", action: () => { setFilter("done") } },
+        { id: "1", name: "All", action: () => { setFilter("all") }, styleName: "all", styleColor: "teal" },
+        { id: "2", name: "In Progress", action: () => { setFilter("inprogress") }, styleName: "inprogress", styleColor: "orange" },
+        { id: "3", name: "Done", action: () => { setFilter("done") }, styleName: "done", styleColor: "teal" },
     ]
     return (
         <>
@@ -34,10 +33,14 @@ const Actions = () => {
                     contentContainerStyle={styles.actionList}
                     data={actions} keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <TouchableHighlight onPress={() => { item.action() }}>
-                            <View style={styles.actionButton}>
-                                <Text style={styles.actionButtonText}>{item.name}</Text>
-                            </View>
+                        <TouchableHighlight
+                            underlayColor="rgba(10, 110, 110, 0.5)"
+                            style={item.styleName == filter ? { ...styles.actionButton, backgroundColor: item.styleColor, borderWidth: 0 } : styles.actionButton}
+                            onPress={() => { item.action() }}>
+                            <Text
+                                style={item.styleName == filter ?
+                                    { ...styles.actionButtonText, color: "#fff" } : styles.actionButtonText}>{item.name}
+                            </Text>
                         </TouchableHighlight>
                     )} />
             </View>

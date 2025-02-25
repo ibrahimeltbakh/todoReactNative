@@ -3,11 +3,12 @@ import { useState } from 'react';
 import styles from '../Styles/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../RTK/Slices/todosSlice';
+import toast from 'react-hot-toast';
 const Inputs = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const dispatch = useDispatch();
-    const todos = useSelector((state) => state.todos);
+
     const addNewTodo = () => {
         const obj = {
             id: Date.now(),
@@ -16,6 +17,10 @@ const Inputs = () => {
             isDone: false,
         }
         dispatch(addTodo(obj))
+        toast.success('Task Added  Successfully!', {
+            duration: 4000,
+            position: 'top-center',
+        })
         setTitle("");
         setDescription("");
     }
@@ -37,10 +42,19 @@ const Inputs = () => {
                     onChangeText={(value) => { setDescription(value) }}
                 />
             </View>
-            <TouchableHighlight onPress={() => { addNewTodo() }}>
-                <View style={styles.button}>
-                    <Text style={styles.buttonText}>Add Task</Text>
-                </View>
+            <TouchableHighlight style={styles.button}
+                underlayColor="rgba(10, 110, 110, 0.5)" onPress={() => {
+                    if (title == "" || description == "") {
+                        toast.error("Enter Title and Description", {
+                            duration: 4000,
+                            position: 'top-center',
+                        })
+                    }
+                    else {
+                        addNewTodo();
+                    }
+                }}>
+                <Text style={styles.buttonText}>Add Task</Text>
             </TouchableHighlight>
         </>
     )

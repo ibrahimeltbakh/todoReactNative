@@ -1,8 +1,13 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
+    background: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+    },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#eee',
         alignItems: 'center',
         paddingTop: 30,
     },
@@ -30,6 +35,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'teal',
         borderRadius: 6,
+
     },
     actionList: {
         paddingHorizontal: 10,
@@ -73,7 +79,58 @@ const styles = StyleSheet.create({
         color: "orange",
         textDecorationLine: 'none',
     },
+    taskDetailsContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f5f5f5",
+        padding: 20,
+    },
+    taskDetails: {
+        width: '90%',
+        padding: 20,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+        elevation: 5,
 
+    },
+    taskTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#fff',
+        marginBottom: 10,
+        textAlign: "center"
+    },
+    taskDescription: {
+        fontSize: 16,
+        color: '#fff',
+        marginBottom: 20,
+        textAlign: "center"
+    },
+    taskStatus: {
+        fontSize: 14,
+        fontWeight: '600',
+        color: '#fff',
+        textAlign: 'right',
+
+    },
+    noTaskText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#666",
+        textAlign: "center",
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: "#fff",
+        borderRadius: 8,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
     hr: {
         borderBottomColor: "#ccc",
         borderBottomWidth: 2,

@@ -1,54 +1,28 @@
 import { useRoute } from '@react-navigation/native'
 import React from 'react'
-import Feather from '@expo/vector-icons/Feather';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import styles from '../Styles/styles';
+import { Text, View } from 'react-native';
 
 const Details = () => {
-    const { params } = useRoute()
-    console.log(params)
+    const { params } = useRoute();
+    const cardBackgroundColor = params && params.isDone ? 'teal' : '#f48924';
     return (
-        <View style={styles.container}>
-            {
-                params ? (
-
-                    <View style={styles.taskView}>
-                        <Text style={styles.taskText}>{params.taskTitle}</Text>
-                        <View style={{ flexDirection: "row", gap: 4 }}>
-                            <AntDesign name="checkcircleo" size={20} color="black" />
-                            {(Platform.OS == "web" || Platform.OS == "android") ? (
-                                <Feather name="trash" size={20} color="red" />
-                            ) : (
-                                <FontAwesome5 name="check-square" size={20} color="black" />
-                            )
-                            }
-                        </View>
-                    </View>
-                ) : (<Text >Task Details</Text>)
-            }
+        <View style={styles.taskDetailsContainer}>
+            {params ? (
+                <View style={[styles.taskDetails, { backgroundColor: cardBackgroundColor }]}>
+                    <Text style={styles.taskTitle}>{params.title}</Text>
+                    <Text style={styles.taskDescription}>{params.description}</Text>
+                    <Text style={styles.taskStatus}>
+                        {params.isDone ? "✔ Completed" : "⏳ In Progress"}
+                    </Text>
+                </View>
+            ) : (
+                <Text style={styles.noTaskText}>
+                    Please select a task to view its details.
+                </Text>
+            )}
         </View>
+    );
+};
 
-    )
-}
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        paddingTop: 30,
-    },
-    taskView: {
-        width: "80%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        textAlign: "center",
-        padding: 7,
-        borderRadius: 6,
-        marginVertical: 7,
-        borderColor: "teal",
-        borderWidth: 1
-    },
-
-});
 export default Details
